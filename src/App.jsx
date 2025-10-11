@@ -1,5 +1,6 @@
 /* ordoapp-landing\src\App.jsx */
 import React from 'react'
+import './App.css'
 import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3 } from 'lucide-react'
 
 function App() {
