@@ -1,9 +1,36 @@
 /* ordoapp-landing\src\App.jsx */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
-import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3 } from 'lucide-react'
+import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3, TrendingUp, Users, Clock, ChevronDown, Mail, Zap, Target } from 'lucide-react'
 
 function App() {
+  const [openFaq, setOpenFaq] = useState(null)
+  const [isVisible, setIsVisible] = useState({})
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            setIsVisible(prev => ({ ...prev, [entry.target.id]: true }))
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+    )
+
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index)
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -61,8 +88,48 @@ function App() {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section id="stats" data-animate className="py-16 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div className="p-6 transform hover:scale-110 transition-transform duration-300">
+              <div className="flex items-center justify-center mb-4">
+                <TrendingUp className="h-10 w-10 text-ordo-green" />
+              </div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">100%</div>
+              <div className="text-gray-600 font-medium">Privado</div>
+              <div className="text-sm text-gray-500 mt-1">Sin conexión bancaria</div>
+            </div>
+            <div className="p-6 transform hover:scale-110 transition-transform duration-300">
+              <div className="flex items-center justify-center mb-4">
+                <Users className="h-10 w-10 text-ordo-blue" />
+              </div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">6+</div>
+              <div className="text-gray-600 font-medium">Módulos</div>
+              <div className="text-sm text-gray-500 mt-1">Sistema completo</div>
+            </div>
+            <div className="p-6 transform hover:scale-110 transition-transform duration-300">
+              <div className="flex items-center justify-center mb-4">
+                <Bell className="h-10 w-10 text-ordo-green" />
+              </div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">24/7</div>
+              <div className="text-gray-600 font-medium">Alertas</div>
+              <div className="text-sm text-gray-500 mt-1">Automáticas</div>
+            </div>
+            <div className="p-6 transform hover:scale-110 transition-transform duration-300">
+              <div className="flex items-center justify-center mb-4">
+                <Clock className="h-10 w-10 text-ordo-blue" />
+              </div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">5 min</div>
+              <div className="text-gray-600 font-medium">Setup</div>
+              <div className="text-sm text-gray-500 mt-1">Configuración rápida</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Grid */}
-      <section id="features" className="py-16 bg-gradient-to-b from-white via-blue-50 to-green-50">
+      <section id="features" data-animate className="py-16 bg-gradient-to-b from-white via-blue-50 to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -75,7 +142,10 @@ function App() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Gestión de Gastos */}
-            <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border-2 border-ordo-green/20 hover:border-ordo-green hover:shadow-2xl hover:shadow-green-200 transition-all transform hover:-translate-y-2 group">
+            <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border-2 border-ordo-green/20 hover:border-ordo-green hover:shadow-2xl hover:shadow-green-200 transition-all transform hover:-translate-y-2 group relative overflow-hidden">
+              <div className="absolute top-4 right-4 bg-ordo-green text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                ESENCIAL
+              </div>
               <div className="w-12 h-12 bg-ordo-green rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <PiggyBank className="h-6 w-6 text-white" />
               </div>
@@ -91,7 +161,10 @@ function App() {
             </div>
 
             {/* Suscripciones */}
-            <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl border-2 border-ordo-blue/20 hover:border-ordo-blue hover:shadow-2xl hover:shadow-blue-200 transition-all transform hover:-translate-y-2 group">
+            <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl border-2 border-ordo-blue/20 hover:border-ordo-blue hover:shadow-2xl hover:shadow-blue-200 transition-all transform hover:-translate-y-2 group relative overflow-hidden">
+              <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                POPULAR
+              </div>
               <div className="w-12 h-12 bg-ordo-blue rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Smartphone className="h-6 w-6 text-white" />
               </div>
@@ -155,7 +228,10 @@ function App() {
             </div>
 
             {/* Sistema de Notificaciones */}
-            <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl border-2 border-ordo-blue/20 hover:border-ordo-blue hover:shadow-2xl hover:shadow-blue-200 transition-all transform hover:-translate-y-2 group">
+            <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl border-2 border-ordo-blue/20 hover:border-ordo-blue hover:shadow-2xl hover:shadow-blue-200 transition-all transform hover:-translate-y-2 group relative overflow-hidden">
+              <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
+                AUTOMÁTICO
+              </div>
               <div className="w-12 h-12 bg-ordo-blue rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Bell className="h-6 w-6 text-white" />
               </div>
@@ -173,8 +249,84 @@ function App() {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section id="how-it-works" data-animate className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              ¿Cómo funciona OrdoApp?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              En solo 3 pasos simples, tendrás el control total de tus finanzas
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12 relative">
+            {/* Connector Line */}
+            <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-ordo-blue via-ordo-green to-ordo-blue opacity-20" style={{zIndex: 0}}></div>
+
+            {/* Step 1 */}
+            <div className="relative text-center group" style={{zIndex: 1}}>
+              <div className="relative inline-flex items-center justify-center mb-6">
+                <div className="absolute w-24 h-24 bg-ordo-blue/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative w-20 h-20 bg-gradient-to-br from-ordo-blue to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all">
+                  1
+                </div>
+              </div>
+              <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl border-2 border-blue-100 shadow-lg group-hover:shadow-2xl group-hover:border-ordo-blue transition-all">
+                <div className="flex items-center justify-center mb-4">
+                  <Target className="h-8 w-8 text-ordo-blue" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Ingresa tus datos</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Añade tus gastos, suscripciones, préstamos y tarjetas de forma manual y segura
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative text-center group" style={{zIndex: 1}}>
+              <div className="relative inline-flex items-center justify-center mb-6">
+                <div className="absolute w-24 h-24 bg-ordo-green/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative w-20 h-20 bg-gradient-to-br from-ordo-green to-green-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all">
+                  2
+                </div>
+              </div>
+              <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border-2 border-green-100 shadow-lg group-hover:shadow-2xl group-hover:border-ordo-green transition-all">
+                <div className="flex items-center justify-center mb-4">
+                  <Zap className="h-8 w-8 text-ordo-green" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Configura alertas</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  El sistema genera automáticamente alertas inteligentes para cada vencimiento
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative text-center group" style={{zIndex: 1}}>
+              <div className="relative inline-flex items-center justify-center mb-6">
+                <div className="absolute w-24 h-24 bg-ordo-blue/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative w-20 h-20 bg-gradient-to-br from-ordo-blue to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all">
+                  3
+                </div>
+              </div>
+              <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl border-2 border-blue-100 shadow-lg group-hover:shadow-2xl group-hover:border-ordo-blue transition-all">
+                <div className="flex items-center justify-center mb-4">
+                  <CheckCircle className="h-8 w-8 text-ordo-blue" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Gestiona con confianza</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Recibe notificaciones y mantén el control total de tu liquidez mensual
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Privacy Section */}
-      <section id="privacy" className="py-16 bg-gradient-to-br from-green-500 via-ordo-green to-emerald-600 relative overflow-hidden">
+      <section id="privacy" data-animate className="py-16 bg-gradient-to-br from-green-500 via-ordo-green to-emerald-600 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px'}}></div>
         </div>
@@ -225,6 +377,112 @@ function App() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" data-animate className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Preguntas Frecuentes
+            </h2>
+            <p className="text-xl text-gray-600">
+              Todo lo que necesitas saber sobre OrdoApp
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {/* FAQ Item 1 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-blue transition-all">
+              <button
+                onClick={() => toggleFaq(0)}
+                className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-blue-50 transition-colors"
+              >
+                <span className="text-lg font-semibold text-gray-900">
+                  ¿Por qué OrdoApp no se conecta a mis cuentas bancarias?
+                </span>
+                <ChevronDown className={`h-5 w-5 text-ordo-blue transition-transform ${openFaq === 0 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 0 && (
+                <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 animate-fadeIn">
+                  Creemos en tu privacidad. No necesitamos acceso a tus cuentas bancarias porque toda la información la ingresas tú manualmente. Esto significa que tus credenciales bancarias nunca están en riesgo y tienes control total sobre qué información compartes.
+                </div>
+              )}
+            </div>
+
+            {/* FAQ Item 2 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-green transition-all">
+              <button
+                onClick={() => toggleFaq(1)}
+                className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-green-50 transition-colors"
+              >
+                <span className="text-lg font-semibold text-gray-900">
+                  ¿Cómo funcionan las alertas automáticas?
+                </span>
+                <ChevronDown className={`h-5 w-5 text-ordo-green transition-transform ${openFaq === 1 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 1 && (
+                <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 animate-fadeIn">
+                  Una vez que ingresas tus gastos, suscripciones o préstamos, OrdoApp genera automáticamente un calendario de alertas. Las alertas se envían por email a las 10:00 AM con anticipación según el tipo de evento (7, 5, 3, 1 días antes, etc.). El sistema se renueva automáticamente cada mes.
+                </div>
+              )}
+            </div>
+
+            {/* FAQ Item 3 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-blue transition-all">
+              <button
+                onClick={() => toggleFaq(2)}
+                className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-blue-50 transition-colors"
+              >
+                <span className="text-lg font-semibold text-gray-900">
+                  ¿Puedo usar OrdoApp en mi teléfono móvil?
+                </span>
+                <ChevronDown className={`h-5 w-5 text-ordo-blue transition-transform ${openFaq === 2 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 2 && (
+                <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 animate-fadeIn">
+                  Sí, OrdoApp es una aplicación web responsive que funciona perfectamente en cualquier dispositivo: computador, tablet o smartphone. Solo necesitas un navegador web y conexión a internet.
+                </div>
+              )}
+            </div>
+
+            {/* FAQ Item 4 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-green transition-all">
+              <button
+                onClick={() => toggleFaq(3)}
+                className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-green-50 transition-colors"
+              >
+                <span className="text-lg font-semibold text-gray-900">
+                  ¿Qué pasa si quiero pausar las notificaciones?
+                </span>
+                <ChevronDown className={`h-5 w-5 text-ordo-green transition-transform ${openFaq === 3 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 3 && (
+                <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 animate-fadeIn">
+                  Puedes pausar las notificaciones en cualquier momento desde la configuración de cada gasto, suscripción o préstamo. Las alertas quedarán en estado "pausado" hasta que decidas reactivarlas.
+                </div>
+              )}
+            </div>
+
+            {/* FAQ Item 5 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-blue transition-all">
+              <button
+                onClick={() => toggleFaq(4)}
+                className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-blue-50 transition-colors"
+              >
+                <span className="text-lg font-semibold text-gray-900">
+                  ¿Es gratuito?
+                </span>
+                <ChevronDown className={`h-5 w-5 text-ordo-blue transition-transform ${openFaq === 4 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 4 && (
+                <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 animate-fadeIn">
+                  OrdoApp ofrece acceso completo a todas sus funcionalidades. Consulta en la aplicación para conocer las opciones disponibles y cualquier detalle sobre planes actuales.
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 via-ordo-blue to-blue-500 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -249,21 +507,125 @@ function App() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="text-2xl font-bold mb-4">
-              <span className="text-ordo-blue">Ordo</span>
-              <span className="text-ordo-green">App</span>
+      {/* Newsletter Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-white border-t border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-ordo-blue to-blue-600 rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '30px 30px'}}></div>
             </div>
-            <p className="text-gray-400 mb-6">
-              Sistema de gestión financiera personal
-            </p>
-            <div className="border-t border-gray-800 pt-6">
+            <div className="relative z-10 text-center">
+              <Mail className="h-12 w-12 text-white mx-auto mb-4" />
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Mantente informado
+              </h2>
+              <p className="text-white/90 mb-6 max-w-2xl mx-auto">
+                Recibe actualizaciones sobre nuevas funcionalidades y consejos para gestionar mejor tus finanzas
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="tu@email.com"
+                  className="flex-1 px-6 py-3 rounded-lg border-2 border-white/20 bg-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:outline-none focus:border-white focus:bg-white/20 transition-all"
+                />
+                <button className="bg-white text-ordo-blue px-8 py-3 rounded-lg hover:bg-yellow-300 transition-all font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
+                  Suscribirme
+                </button>
+              </div>
+              <p className="text-white/70 text-sm mt-4">
+                Sin spam. Puedes darte de baja en cualquier momento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Brand */}
+            <div className="md:col-span-2">
+              <div className="text-2xl font-bold mb-4">
+                <span className="text-ordo-blue">Ordo</span>
+                <span className="text-ordo-green">App</span>
+              </div>
+              <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
+                Sistema completo de gestión financiera personal que respeta tu privacidad.
+                Controla gastos, suscripciones, préstamos y tarjetas sin conectar tus cuentas bancarias.
+              </p>
+              <div className="flex gap-4">
+                <a href="https://app.ordoapp.cl" className="bg-ordo-green hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors font-medium inline-flex items-center">
+                  Comenzar ahora
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Links */}
+            <div>
+              <h3 className="font-semibold text-white mb-4">Producto</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#features" className="text-gray-400 hover:text-white transition-colors">
+                    Características
+                  </a>
+                </li>
+                <li>
+                  <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors">
+                    Cómo funciona
+                  </a>
+                </li>
+                <li>
+                  <a href="#privacy" className="text-gray-400 hover:text-white transition-colors">
+                    Privacidad
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" className="text-gray-400 hover:text-white transition-colors">
+                    FAQ
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h3 className="font-semibold text-white mb-4">Recursos</h3>
+              <ul className="space-y-3">
+                <li>
+                  <a href="https://app.ordoapp.cl" className="text-gray-400 hover:text-white transition-colors">
+                    Acceder a la App
+                  </a>
+                </li>
+                <li>
+                  <span className="text-gray-400">
+                    Soporte
+                  </span>
+                </li>
+                <li>
+                  <span className="text-gray-400">
+                    Documentación
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom */}
+          <div className="border-t border-gray-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-gray-500 text-sm">
                 © 2025 OrdoApp. Gestión financiera con privacidad.
               </p>
+              <div className="flex gap-6 text-sm text-gray-500">
+                <span className="hover:text-white transition-colors cursor-pointer">
+                  Términos de servicio
+                </span>
+                <span className="hover:text-white transition-colors cursor-pointer">
+                  Política de privacidad
+                </span>
+              </div>
             </div>
           </div>
         </div>
