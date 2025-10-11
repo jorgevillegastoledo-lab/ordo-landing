@@ -391,7 +391,7 @@ function App() {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-ordo-blue to-blue-600 text-white px-8 py-4 rounded-xl hover:from-ordo-green hover:to-green-600 transition-all font-semibold text-lg shadow-2xl hover:shadow-green-500/50 transform hover:scale-110"
             >
               <Smartphone className="h-5 w-5" />
-              Prueba OrdoApp ahora
+              Acceder a OrdoApp
               <ArrowRight className="h-5 w-5" />
             </a>
           </div>
@@ -588,7 +588,7 @@ function App() {
               </button>
               {openFaq === 2 && (
                 <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 animate-fadeIn">
-                  Sí, OrdoApp es una aplicación web responsive que funciona perfectamente en cualquier dispositivo: computador, tablet o smartphone. Solo necesitas un navegador web y conexión a internet.
+                  Actualmente, OrdoApp es una aplicación web responsive que funciona en cualquier navegador móvil (computador, tablet o smartphone). Además, estamos desarrollando una aplicación nativa para Android que próximamente estará disponible, ofreciendo una experiencia optimizada para dispositivos móviles.
                 </div>
               )}
             </div>
@@ -611,7 +611,8 @@ function App() {
               )}
             </div>
 
-            {/* FAQ Item 5 */}
+            {/* FAQ Item 5 - Commented out during development */}
+            {/*
             <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-blue transition-all">
               <button
                 onClick={() => toggleFaq(4)}
@@ -628,6 +629,7 @@ function App() {
                 </div>
               )}
             </div>
+            */}
           </div>
         </div>
       </section>
