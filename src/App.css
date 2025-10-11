@@ -1,0 +1,64 @@
+import React from 'react'
+import './App.css'
+
+function App() {
+  return (
+    <div className="app">
+      {/* Header */}
+      <header className="header">
+        <div className="container">
+          <div className="nav">
+            <div className="logo">
+              <span className="logo-or">OR</span>
+              <span className="logo-do">DO</span>
+              <span className="logo-app">App</span>
+            </div>
+            <a href="https://app.ordoapp.cl" className="cta-button">
+              Acceder a la App
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="container">
+          <div className="hero-content">
+            <h1 className="hero-title">
+              Controla tu <span className="text-green">liquidez</span> mensual
+              <br />
+              sin conectar tus <span className="text-blue">cuentas</span>
+            </h1>
+            <p className="hero-subtitle">
+              Sistema completo de gestión financiera personal que respeta tu privacidad. 
+              Gestiona gastos, suscripciones, préstamos y tarjetas con alertas automáticas inteligentes.
+            </p>
+            <div className="hero-cta">
+              <a href="https://app.ordoapp.cl" className="primary-button">
+                Comenzar ahora →
+              </a>
+              <div className="privacy-note">
+                ✓ Sin registro de cuentas bancarias
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="features">
+        <div className="container">
+          <div className="section-header">
+            <h2>Todo lo que necesitas en un solo lugar</h2>
+            <p>Módulos completos para gestionar cada aspecto de tus finanzas personales</p>
+          </div>
+
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon green">💰</div>
+              <h3>Gestión de Gastos</h3>
+              <p>Control de gastos únicos y recurrentes. Vinculación a tarjetas con cuotas y alertas automáticas.</p>
+              <ul>
+                <li>Gastos únicos o recurrentes</li>
+                <li>Vinculación a tarjetas de crédito</li>
+                <li>Marcar como pagado/no pagado</li>
