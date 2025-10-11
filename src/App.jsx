@@ -366,14 +366,14 @@ function App() {
             <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 group"
-              aria-label="Previous screenshot"
+              aria-label="Captura anterior"
             >
               <ChevronLeft className="h-8 w-8 text-ordo-blue group-hover:text-ordo-green transition-colors" />
             </button>
             <button
               onClick={nextSlide}
               className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 group"
-              aria-label="Next screenshot"
+              aria-label="Siguiente captura"
             >
               <ChevronRight className="h-8 w-8 text-ordo-blue group-hover:text-ordo-green transition-colors" />
             </button>
@@ -389,7 +389,7 @@ function App() {
                       ? 'w-12 h-3 bg-ordo-blue'
                       : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
                   }`}
-                  aria-label={`Go to screenshot ${index + 1}`}
+                  aria-label={`Ir a captura ${index + 1}`}
                 />
               ))}
             </div>
@@ -669,7 +669,8 @@ function App() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
+      {/* Newsletter Section - Temporarily disabled until email domain is ready */}
+      {/*
       <section className="py-16 bg-gradient-to-br from-gray-50 to-white border-t border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-br from-ordo-blue to-blue-600 rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
@@ -701,6 +702,7 @@ function App() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-16">
