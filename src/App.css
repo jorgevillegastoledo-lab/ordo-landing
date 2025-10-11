@@ -1,64 +1,311 @@
-import React from 'react'
-import './App.css'
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-function App() {
-  return (
-    <div className="app">
-      {/* Header */}
-      <header className="header">
-        <div className="container">
-          <div className="nav">
-            <div className="logo">
-              <span className="logo-or">OR</span>
-              <span className="logo-do">DO</span>
-              <span className="logo-app">App</span>
-            </div>
-            <a href="https://app.ordoapp.cl" className="cta-button">
-              Acceder a la App
-            </a>
-          </div>
-        </div>
-      </header>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #ffffff;
+}
 
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="container">
-          <div className="hero-content">
-            <h1 className="hero-title">
-              Controla tu <span className="text-green">liquidez</span> mensual
-              <br />
-              sin conectar tus <span className="text-blue">cuentas</span>
-            </h1>
-            <p className="hero-subtitle">
-              Sistema completo de gestión financiera personal que respeta tu privacidad. 
-              Gestiona gastos, suscripciones, préstamos y tarjetas con alertas automáticas inteligentes.
-            </p>
-            <div className="hero-cta">
-              <a href="https://app.ordoapp.cl" className="primary-button">
-                Comenzar ahora →
-              </a>
-              <div className="privacy-note">
-                ✓ Sin registro de cuentas bancarias
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+.app {
+  min-height: 100vh;
+}
 
-      {/* Features */}
-      <section className="features">
-        <div className="container">
-          <div className="section-header">
-            <h2>Todo lo que necesitas en un solo lugar</h2>
-            <p>Módulos completos para gestionar cada aspecto de tus finanzas personales</p>
-          </div>
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon green">💰</div>
-              <h3>Gestión de Gastos</h3>
-              <p>Control de gastos únicos y recurrentes. Vinculación a tarjetas con cuotas y alertas automáticas.</p>
-              <ul>
-                <li>Gastos únicos o recurrentes</li>
-                <li>Vinculación a tarjetas de crédito</li>
-                <li>Marcar como pagado/no pagado</li>
+/* Header */
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.logo-or {
+  color: #10b981;
+}
+
+.logo-do {
+  color: #3b82f6;
+}
+
+.logo-app {
+  color: #6b7280;
+  margin-left: 0.25rem;
+  font-weight: normal;
+}
+
+.cta-button {
+  background: #10b981;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #059669;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 4rem 0 6rem;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.text-green {
+  color: #10b981;
+}
+
+.text-blue {
+  color: #3b82f6;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.primary-button {
+  background: #10b981;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.primary-button:hover {
+  background: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px -8px rgba(16, 185, 129, 0.5);
+}
+
+.privacy-note {
+  color: #6b7280;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Features Section */
+.features {
+  padding: 6rem 0;
+  background: #ffffff;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover {
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature-icon.green {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.feature-icon.blue {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.feature-icon.purple {
+  background: #e9d5ff;
+  color: #7c2d12;
+}
+
+.feature-icon.orange {
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.feature-card ul {
+  list-style: none;
+}
+
+.feature-card li {
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.feature-card li:before {
+  content: '•';
+  color: #10b981;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .hero {
+    padding: 2rem 0 4rem;
+  }
+  
+  .features {
+    padding: 4rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .primary-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+}
