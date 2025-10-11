@@ -12,10 +12,9 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <div className="text-2xl font-bold">
-                <span className="text-ordo-green">OR</span>
-                <span className="text-ordo-blue">DO</span>
+                <span className="text-ordo-blue">Ordo</span>
+                <span className="text-ordo-green">App</span>
               </div>
-              <span className="ml-2 text-gray-500 text-sm">App</span>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#features" className="text-gray-600 hover:text-gray-900">Características</a>
@@ -188,7 +187,7 @@ function App() {
               Tu privacidad es nuestra prioridad
             </h2>
             <p className="text-xl text-white/90 max-w-3xl mx-auto drop-shadow">
-              ORDO App no requiere conexión a tus cuentas bancarias. Mantienes el control total de tu información financiera.
+              OrdoApp no requiere conexión a tus cuentas bancarias. Mantienes el control total de tu información financiera.
             </p>
           </div>
 
@@ -244,7 +243,7 @@ function App() {
             href="https://app.ordoapp.cl"
             className="bg-white text-ordo-blue px-8 py-4 rounded-lg hover:bg-yellow-300 hover:text-blue-900 transition-all font-semibold text-lg inline-flex items-center group shadow-2xl hover:shadow-3xl transform hover:scale-110"
           >
-            Acceder a ORDO App
+            Acceder a OrdoApp
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
@@ -255,16 +254,15 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="text-2xl font-bold mb-4">
-              <span className="text-ordo-green">OR</span>
-              <span className="text-ordo-blue">DO</span>
-              <span className="text-gray-400 ml-2 text-lg">App</span>
+              <span className="text-ordo-blue">Ordo</span>
+              <span className="text-ordo-green">App</span>
             </div>
             <p className="text-gray-400 mb-6">
               Sistema de gestión financiera personal
             </p>
             <div className="border-t border-gray-800 pt-6">
               <p className="text-gray-500 text-sm">
-                © 2025 ORDO App. Gestión financiera con privacidad.
+                © 2025 OrdoApp. Gestión financiera con privacidad.
               </p>
             </div>
           </div>
