@@ -1,12 +1,14 @@
 /* ordoapp-landing\src\App.jsx */
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3, TrendingUp, Users, Clock, ChevronDown, Mail, Zap, Target, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3, TrendingUp, Users, Clock, ChevronDown, Mail, Zap, Target, ChevronLeft, ChevronRight, X } from 'lucide-react'
 
 function App() {
   const [openFaq, setOpenFaq] = useState(null)
   const [isVisible, setIsVisible] = useState({})
   const [activeSlide, setActiveSlide] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxImage, setLightboxImage] = useState(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -81,6 +83,18 @@ function App() {
 
   const goToSlide = (index) => {
     setActiveSlide(index)
+  }
+
+  const openLightbox = (screenshot) => {
+    setLightboxImage(screenshot)
+    setLightboxOpen(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeLightbox = () => {
+    setLightboxOpen(false)
+    setLightboxImage(null)
+    document.body.style.overflow = 'unset'
   }
 
   return (
@@ -340,9 +354,9 @@ function App() {
                       zIndex: 10 - absOffset,
                       pointerEvents: absOffset === 0 ? 'auto' : 'none'
                     }}
-                    onClick={() => absOffset === 0 && null}
+                    onClick={() => absOffset === 0 && openLightbox(screenshot)}
                   >
-                    <div className={`relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-br ${screenshot.color}`}>
+                    <div className={`relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-br ${screenshot.color} hover:scale-105 transition-transform duration-300`}>
                       <div className="aspect-video">
                         <img
                           src={screenshot.src}
@@ -794,6 +808,37 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Image Lightbox Modal */}
+      {lightboxOpen && lightboxImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm animate-fadeIn"
+          onClick={closeLightbox}
+        >
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 z-60 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all group"
+            aria-label="Cerrar imagen"
+          >
+            <X className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
+          </button>
+
+          <div className="max-w-7xl max-h-[90vh] mx-auto px-4" onClick={(e) => e.stopPropagation()}>
+            <div className="relative">
+              <img
+                src={lightboxImage.src}
+                alt={lightboxImage.title}
+                className="w-full h-full object-contain rounded-lg shadow-2xl"
+              />
+              <div className="mt-6 text-center">
+                <h3 className="text-2xl font-bold text-white mb-2">{lightboxImage.title}</h3>
+                <p className="text-white/80 text-lg">{lightboxImage.description}</p>
+                <p className="text-white/60 text-sm mt-4">Haz clic fuera de la imagen para cerrar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
