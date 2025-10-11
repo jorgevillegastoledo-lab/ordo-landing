@@ -44,9 +44,9 @@ function App() {
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-gray-900">Características</a>
-              <a href="#benefits" className="text-gray-600 hover:text-gray-900">Beneficios</a>
-              <a href="#privacy" className="text-gray-600 hover:text-gray-900">Privacidad</a>
+              <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Características</a>
+              <a href="#screenshots" className="text-gray-600 hover:text-gray-900 transition-colors">Screenshots</a>
+              <a href="#privacy" className="text-gray-600 hover:text-gray-900 transition-colors">Privacidad</a>
             </nav>
             <a 
               href="https://app.ordoapp.cl" 
@@ -245,6 +245,155 @@ function App() {
                 <li>• Renovaciones automáticas</li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* App Screenshots Section */}
+      <section id="screenshots" data-animate className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-ordo-blue/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-ordo-green/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Ve OrdoApp en acción
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Una interfaz intuitiva y moderna diseñada para gestionar tus finanzas de forma simple
+            </p>
+          </div>
+
+          {/* Main Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Dashboard - Large Featured */}
+            <div className="md:col-span-2 lg:row-span-2 group perspective-1000">
+              <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.02] hover:-rotate-1 hover:shadow-blue-500/30 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200/50">
+                <div className="absolute top-4 left-4 bg-ordo-blue text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg z-10">
+                  Dashboard Principal
+                </div>
+                <img
+                  src="/screenshots/dashboard.png"
+                  alt="Dashboard OrdoApp"
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <h3 className="text-2xl font-bold mb-2">Vista General</h3>
+                    <p className="text-white/90">Control total de tu liquidez mensual</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Gastos */}
+            <div className="group perspective-1000">
+              <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-105 hover:rotate-2 hover:shadow-green-500/30 bg-gradient-to-br from-green-50 to-white border-2 border-green-200/50">
+                <div className="absolute top-3 right-3 bg-ordo-green text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg z-10">
+                  Gastos
+                </div>
+                <img
+                  src="/screenshots/gastos.png"
+                  alt="Gestión de Gastos"
+                  className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ordo-green/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h4 className="font-bold text-lg">Gestión de Gastos</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Suscripciones */}
+            <div className="group perspective-1000">
+              <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-105 hover:-rotate-2 hover:shadow-blue-500/30 bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200/50">
+                <div className="absolute top-3 right-3 bg-ordo-blue text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg z-10">
+                  Suscripciones
+                </div>
+                <img
+                  src="/screenshots/suscripciones.png"
+                  alt="Suscripciones"
+                  className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ordo-blue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h4 className="font-bold text-lg">Suscripciones</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tarjetas */}
+            <div className="group perspective-1000">
+              <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-purple-500/30 bg-gradient-to-br from-purple-50 to-white border-2 border-purple-200/50">
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg z-10">
+                  Tarjetas
+                </div>
+                <img
+                  src="/screenshots/tarjetas.png"
+                  alt="Tarjetas de Crédito"
+                  className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h4 className="font-bold text-lg">Tarjetas de Crédito</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Calendario */}
+            <div className="md:col-span-2 group perspective-1000">
+              <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02] hover:rotate-1 hover:shadow-orange-500/30 bg-gradient-to-br from-orange-50 to-white border-2 border-orange-200/50">
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg z-10">
+                  Calendario
+                </div>
+                <img
+                  src="/screenshots/calendario.png"
+                  alt="Calendario Integrado"
+                  className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-orange-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h4 className="font-bold text-lg">Calendario Integrado</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Programación de Notificaciones */}
+            <div className="group perspective-1000">
+              <div className="relative h-full min-h-[300px] rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-105 hover:-rotate-1 hover:shadow-cyan-500/30 bg-gradient-to-br from-cyan-50 to-white border-2 border-cyan-200/50">
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg z-10">
+                  Notificaciones
+                </div>
+                <img
+                  src="/screenshots/programacion_notificaciones.png"
+                  alt="Programación de Notificaciones"
+                  className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-cyan-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h4 className="font-bold text-lg">Alertas Automáticas</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Below Screenshots */}
+          <div className="text-center mt-16">
+            <a
+              href="https://app.ordoapp.cl"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-ordo-blue to-blue-600 text-white px-8 py-4 rounded-xl hover:from-ordo-green hover:to-green-600 transition-all font-semibold text-lg shadow-2xl hover:shadow-green-500/50 transform hover:scale-110"
+            >
+              <Smartphone className="h-5 w-5" />
+              Prueba OrdoApp ahora
+              <ArrowRight className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </section>
