@@ -9,6 +9,8 @@ function App() {
   const [activeSlide, setActiveSlide] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxImage, setLightboxImage] = useState(null)
+  const [formData, setFormData] = useState({ nombre: '', email: '', motivo: '' })
+  const [formStatus, setFormStatus] = useState({ loading: false, message: '', type: '' })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -95,6 +97,48 @@ function App() {
     setLightboxOpen(false)
     setLightboxImage(null)
     document.body.style.overflow = 'unset'
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSolicitud = async (e) => {
+    e.preventDefault()
+    setFormStatus({ loading: true, message: '', type: '' })
+
+    try {
+      const response = await fetch('https://ordoapp-produccion-production.up.railway.app/solicitudes/crear', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre: formData.nombre,
+          email: formData.email,
+          motivo: formData.motivo,
+          fecha_solicitud: new Date().toISOString()
+        })
+      })
+
+      if (response.ok) {
+        setFormStatus({
+          loading: false,
+          message: '¡Solicitud enviada! Te contactaremos pronto.',
+          type: 'success'
+        })
+        setFormData({ nombre: '', email: '', motivo: '' })
+      } else {
+        throw new Error('Error al enviar solicitud')
+      }
+    } catch (error) {
+      setFormStatus({
+        loading: false,
+        message: 'Hubo un error al enviar tu solicitud. Intenta nuevamente.',
+        type: 'error'
+      })
+    }
   }
 
   return (
@@ -680,6 +724,107 @@ function App() {
             Acceder a OrdoApp
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </a>
+        </div>
+      </section>
+
+      {/* Access Request Form Section */}
+      <section id="solicitar-acceso" data-animate className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-ordo-green/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-ordo-blue/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Solicitar Acceso a OrdoApp
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Completa el formulario y te contactaremos pronto
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-gray-100">
+            <form onSubmit={handleSolicitud} className="space-y-6">
+              <div>
+                <label htmlFor="nombre" className="block text-sm font-semibold text-gray-900 mb-2">
+                  Nombre completo <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  value={formData.nombre}
+                  onChange={handleInputChange}
+                  placeholder="Tu nombre completo"
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none text-gray-900"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="tu@email.com"
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none text-gray-900"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="motivo" className="block text-sm font-semibold text-gray-900 mb-2">
+                  ¿Cómo planeas usar OrdoApp? <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="motivo"
+                  name="motivo"
+                  value={formData.motivo}
+                  onChange={handleInputChange}
+                  placeholder="Cuéntanos sobre tu interés en OrdoApp..."
+                  required
+                  rows="4"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none resize-none text-gray-900"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={formStatus.loading}
+                className="w-full bg-gradient-to-r from-ordo-blue to-blue-600 text-white px-8 py-4 rounded-xl hover:from-ordo-green hover:to-green-600 transition-all font-semibold text-lg shadow-2xl hover:shadow-green-500/50 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+              >
+                {formStatus.loading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Mail className="h-5 w-5" />
+                    Enviar Solicitud
+                  </>
+                )}
+              </button>
+
+              {formStatus.message && (
+                <div
+                  className={`p-4 rounded-lg ${
+                    formStatus.type === 'success'
+                      ? 'bg-green-50 border-2 border-green-200 text-green-800'
+                      : 'bg-red-50 border-2 border-red-200 text-red-800'
+                  } animate-fadeIn`}
+                >
+                  <p className="font-medium text-center">{formStatus.message}</p>
+                </div>
+              )}
+            </form>
+          </div>
         </div>
       </section>
 
