@@ -9,7 +9,7 @@ function App() {
   const [activeSlide, setActiveSlide] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxImage, setLightboxImage] = useState(null)
-  const [formData, setFormData] = useState({ nombre: '', email: '', motivo: '' })
+  const [formData, setFormData] = useState({ nombre: '', email: '', comoUsaras: '' })
   const [formStatus, setFormStatus] = useState({ loading: false, message: '', type: '' })
 
   useEffect(() => {
@@ -109,33 +109,38 @@ function App() {
     setFormStatus({ loading: true, message: '', type: '' })
 
     try {
-      const response = await fetch('https://ordoapp-produccion-production.up.railway.app/solicitudes/crear', {
+      const response = await fetch('https://devapi.ordoapp.cl/public/request-access', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          nombre: formData.nombre,
           email: formData.email,
-          motivo: formData.motivo,
-          fecha_solicitud: new Date().toISOString()
+          nombre_sugerido: formData.nombre,
+          uso_planificado: formData.comoUsaras
         })
       })
 
-      if (response.ok) {
+      const data = await response.json()
+
+      if (data.ok) {
         setFormStatus({
           loading: false,
-          message: '¡Solicitud enviada! Te contactaremos pronto.',
+          message: '¡Solicitud enviada exitosamente!\n\nTu solicitud de acceso ha sido recibida y está en revisión. Te enviaremos un email con las instrucciones de acceso una vez sea aprobada.\n\nTiempo estimado: 24-48 horas.',
           type: 'success'
         })
-        setFormData({ nombre: '', email: '', motivo: '' })
+        setFormData({ nombre: '', email: '', comoUsaras: '' })
       } else {
-        throw new Error('Error al enviar solicitud')
+        setFormStatus({
+          loading: false,
+          message: data.message || 'Hubo un error al enviar tu solicitud. Intenta nuevamente.',
+          type: 'error'
+        })
       }
     } catch (error) {
       setFormStatus({
         loading: false,
-        message: 'Hubo un error al enviar tu solicitud. Intenta nuevamente.',
+        message: 'Error al enviar solicitud. Intenta nuevamente.',
         type: 'error'
       })
     }
@@ -779,16 +784,15 @@ function App() {
               </div>
 
               <div>
-                <label htmlFor="motivo" className="block text-sm font-semibold text-gray-900 mb-2">
-                  ¿Cómo planeas usar OrdoApp? <span className="text-red-500">*</span>
+                <label htmlFor="comoUsaras" className="block text-sm font-semibold text-gray-900 mb-2">
+                  ¿Cómo planeas usar OrdoApp?
                 </label>
                 <textarea
-                  id="motivo"
-                  name="motivo"
-                  value={formData.motivo}
+                  id="comoUsaras"
+                  name="comoUsaras"
+                  value={formData.comoUsaras}
                   onChange={handleInputChange}
                   placeholder="Cuéntanos sobre tu interés en OrdoApp..."
-                  required
                   rows="4"
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none resize-none text-gray-900"
                 />
@@ -820,7 +824,7 @@ function App() {
                       : 'bg-red-50 border-2 border-red-200 text-red-800'
                   } animate-fadeIn`}
                 >
-                  <p className="font-medium text-center">{formStatus.message}</p>
+                  <p className="font-medium text-center whitespace-pre-line">{formStatus.message}</p>
                 </div>
               )}
             </form>
