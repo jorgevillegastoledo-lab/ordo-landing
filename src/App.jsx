@@ -148,15 +148,8 @@ function App() {
         setTurnstileToken(null)
         turnstileRef.current?.reset()
       } else {
-        // Mostrar mensaje específico del backend
-        let errorMessage = data.message || data.error || 'Hubo un error al enviar tu solicitud.'
-
-        // Agregar contexto según el código de error HTTP
-        if (response.status === 409) {
-          errorMessage = data.message || 'Ya existe una solicitud con este email. Por favor, espera la respuesta o contacta al soporte.'
-        } else if (response.status === 400) {
-          errorMessage = data.message || 'Datos inválidos. Por favor, verifica la información ingresada.'
-        }
+        // Mostrar mensaje específico del backend (priorizar detail, message o error)
+        let errorMessage = data.detail || data.message || data.error || 'Hubo un error al enviar tu solicitud.'
 
         setFormStatus({
           loading: false,
