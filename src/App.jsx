@@ -1,7 +1,8 @@
 /* ordoapp-landing\src\App.jsx */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
 import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3, TrendingUp, Users, Clock, ChevronDown, Mail, Zap, Target, ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { Turnstile } from '@marsidev/react-turnstile'
 
 function App() {
   const [openFaq, setOpenFaq] = useState(null)
@@ -11,6 +12,8 @@ function App() {
   const [lightboxImage, setLightboxImage] = useState(null)
   const [formData, setFormData] = useState({ nombre: '', email: '', comoUsaras: '' })
   const [formStatus, setFormStatus] = useState({ loading: false, message: '', type: '' })
+  const [turnstileToken, setTurnstileToken] = useState(null)
+  const turnstileRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -108,6 +111,16 @@ function App() {
     e.preventDefault()
     setFormStatus({ loading: true, message: '', type: '' })
 
+    // Validar Turnstile
+    if (!turnstileToken) {
+      setFormStatus({
+        loading: false,
+        message: 'Por favor, completa la verificación de seguridad.',
+        type: 'error'
+      })
+      return
+    }
+
     try {
       const response = await fetch('https://devapi.ordoapp.cl/public/request-access', {
         method: 'POST',
@@ -117,7 +130,8 @@ function App() {
         body: JSON.stringify({
           email: formData.email,
           nombre_sugerido: formData.nombre,
-          uso_planificado: formData.comoUsaras
+          uso_planificado: formData.comoUsaras,
+          turnstile_token: turnstileToken
         })
       })
 
@@ -130,6 +144,8 @@ function App() {
           type: 'success'
         })
         setFormData({ nombre: '', email: '', comoUsaras: '' })
+        setTurnstileToken(null)
+        turnstileRef.current?.reset()
       } else {
         setFormStatus({
           loading: false,
@@ -795,6 +811,22 @@ function App() {
                   placeholder="Cuéntanos sobre tu interés en OrdoApp..."
                   rows="4"
                   className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none resize-none text-gray-900"
+                />
+              </div>
+
+              {/* Cloudflare Turnstile CAPTCHA */}
+              <div className="flex justify-center">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey="0x4AAAAAAB4vc2jXJFg8m_I3"
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onError={() => setTurnstileToken(null)}
+                  onExpire={() => setTurnstileToken(null)}
+                  options={{
+                    theme: "light",
+                    size: "normal",
+                    language: "es"
+                  }}
                 />
               </div>
 
