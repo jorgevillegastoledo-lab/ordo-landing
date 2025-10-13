@@ -137,7 +137,8 @@ function App() {
 
       const data = await response.json()
 
-      if (data.ok) {
+      // Manejar respuesta según el código de estado HTTP
+      if (response.ok && data.ok) {
         setFormStatus({
           loading: false,
           message: '¡Solicitud enviada exitosamente!\n\nTu solicitud de acceso ha sido recibida y está en revisión. Te enviaremos un email con las instrucciones de acceso una vez sea aprobada.\n\nTiempo estimado: 24-48 horas.',
@@ -147,16 +148,27 @@ function App() {
         setTurnstileToken(null)
         turnstileRef.current?.reset()
       } else {
+        // Mostrar mensaje específico del backend
+        let errorMessage = data.message || data.error || 'Hubo un error al enviar tu solicitud.'
+
+        // Agregar contexto según el código de error HTTP
+        if (response.status === 409) {
+          errorMessage = data.message || 'Ya existe una solicitud con este email. Por favor, espera la respuesta o contacta al soporte.'
+        } else if (response.status === 400) {
+          errorMessage = data.message || 'Datos inválidos. Por favor, verifica la información ingresada.'
+        }
+
         setFormStatus({
           loading: false,
-          message: data.message || 'Hubo un error al enviar tu solicitud. Intenta nuevamente.',
+          message: errorMessage,
           type: 'error'
         })
       }
     } catch (error) {
+      console.error('Error al enviar solicitud:', error)
       setFormStatus({
         loading: false,
-        message: 'Error al enviar solicitud. Intenta nuevamente.',
+        message: 'Error de conexión. Por favor, verifica tu conexión a internet e intenta nuevamente.',
         type: 'error'
       })
     }
