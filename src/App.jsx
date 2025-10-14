@@ -174,10 +174,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <div className="text-2xl font-bold">
-                <span className="text-ordo-blue">Ordo</span>
-                <span className="text-ordo-green">App</span>
-              </div>
+              <img src="/ordoapp_logo.svg" alt="OrdoApp" className="h-10" />
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Características</a>
@@ -910,9 +907,8 @@ function App() {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
             <div className="md:col-span-2">
-              <div className="text-2xl font-bold mb-4">
-                <span className="text-ordo-blue">Ordo</span>
-                <span className="text-ordo-green">App</span>
+              <div className="mb-4">
+                <img src="/ordoapp_logo.svg" alt="OrdoApp" className="h-10" />
               </div>
               <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
                 Sistema completo de gestión financiera personal que respeta tu privacidad.
