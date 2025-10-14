@@ -122,7 +122,7 @@ function App() {
     }
 
     try {
-      const response = await fetch('https://devapi.ordoapp.cl/public/request-access', {
+      const response = await fetch('https://api.ordoapp.cl/public/request-access', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
