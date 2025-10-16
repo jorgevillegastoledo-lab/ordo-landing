@@ -1,7 +1,7 @@
 /* ordoapp-landing\src\App.jsx */
 import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
-import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3, TrendingUp, Users, Clock, ChevronDown, Mail, Zap, Target, ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3, TrendingUp, Users, Clock, ChevronDown, Mail, Zap, Target, ChevronLeft, ChevronRight, X, AlertCircle } from 'lucide-react'
 import { Turnstile } from '@marsidev/react-turnstile'
 
 function App() {
@@ -197,13 +197,13 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-              Controla tu <span className="text-yellow-300 animate-pulse">liquidez</span> mensual
+              Visualiza tu <span className="text-yellow-300 animate-pulse">liquidez</span> mensual
               <br />
               sin conectar tus <span className="text-green-300">cuentas</span>
             </h1>
             <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow">
               Sistema completo de gestión financiera personal que respeta tu privacidad.
-              Gestiona gastos, suscripciones, préstamos y tarjetas con alertas automáticas inteligentes.
+              Organiza gastos, suscripciones, préstamos y tarjetas con recordatorios automáticos de vencimientos.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
@@ -245,9 +245,9 @@ function App() {
               <div className="flex items-center justify-center mb-4">
                 <Bell className="h-10 w-10 text-ordo-green" />
               </div>
-              <div className="text-4xl font-bold text-gray-900 mb-2">24/7</div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">9-10 AM</div>
               <div className="text-gray-600 font-medium">Alertas</div>
-              <div className="text-sm text-gray-500 mt-1">Automáticas</div>
+              <div className="text-sm text-gray-500 mt-1">Horario matutino fijo</div>
             </div>
             <div className="p-6 transform hover:scale-110 transition-transform duration-300">
               <div className="flex items-center justify-center mb-4">
@@ -284,7 +284,7 @@ function App() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Gestión de Gastos</h3>
               <p className="text-gray-600 mb-4">
-                Control de gastos únicos y recurrentes. Vinculación a tarjetas con cuotas y alertas automáticas.
+                Organiza gastos únicos y recurrentes. Vinculación a tarjetas con cuotas y recordatorios automáticos.
               </p>
               <ul className="text-sm text-gray-500 space-y-1">
                 <li>• Gastos únicos o recurrentes</li>
@@ -303,12 +303,12 @@ function App() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Suscripciones Inteligentes</h3>
               <p className="text-gray-600 mb-4">
-                Seguimiento de Netflix, Spotify, Microsoft 365. Renovación automática y alertas escalonadas.
+                Seguimiento de Netflix, Spotify, Microsoft 365. Notificaciones de vencimiento y alertas escalonadas.
               </p>
               <ul className="text-sm text-gray-500 space-y-1">
                 <li>• Anuales: 7 alertas (30, 15, 7, 5, 3, 1, 0 días)</li>
                 <li>• Mensuales: 5 alertas (7, 5, 3, 1, 0 días)</li>
-                <li>• Renovación automática</li>
+                <li>• Notificaciones se renuevan automáticamente</li>
               </ul>
             </div>
 
@@ -317,14 +317,14 @@ function App() {
               <div className="w-12 h-12 bg-ordo-green rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <BarChart3 className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Control de Préstamos</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Gestión de Préstamos</h3>
               <p className="text-gray-600 mb-4">
-                Gestión completa de préstamos bancarios con control automático de cuotas y cálculo de saldos.
+                Seguimiento completo de préstamos bancarios con registro de cuotas y cálculo de saldos.
               </p>
               <ul className="text-sm text-gray-500 space-y-1">
-                <li>• Control de cuotas y pagos</li>
+                <li>• Seguimiento de cuotas y pagos</li>
                 <li>• Cálculo automático de saldos</li>
-                <li>• Alertas de vencimiento</li>
+                <li>• Recordatorios de vencimiento</li>
               </ul>
             </div>
 
@@ -335,12 +335,12 @@ function App() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Tarjetas de Crédito</h3>
               <p className="text-gray-600 mb-4">
-                Facturación mensual automática, control de consumos y alertas de cierre.
+                Ingreso manual de gastos, visualización de consumos y recordatorios automáticos de vencimientos.
               </p>
               <ul className="text-sm text-gray-500 space-y-1">
-                <li>• Facturación mensual automática</li>
-                <li>• Control de consumos por mes</li>
-                <li>• Alertas de cierre de facturación</li>
+                <li>• Registro manual de gastos de tarjeta</li>
+                <li>• Visualización de consumos por mes</li>
+                <li>• Recordatorios automáticos de vencimientos</li>
               </ul>
             </div>
 
@@ -373,9 +373,28 @@ function App() {
                 Sistema complejo de alertas por email con horarios configurados y estados inteligentes.
               </p>
               <ul className="text-sm text-gray-500 space-y-1">
-                <li>• Envío automático a las 10:00 AM</li>
+                <li>• Envío automático entre 9-10 AM</li>
                 <li>• Estados: pendiente, enviado, pausado</li>
-                <li>• Renovaciones automáticas</li>
+                <li>• Renovaciones automáticas de notificaciones</li>
+              </ul>
+            </div>
+
+            {/* Notificaciones Manuales */}
+            <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border-2 border-ordo-green/20 hover:border-ordo-green hover:shadow-2xl hover:shadow-green-200 transition-all transform hover:-translate-y-2 group relative overflow-hidden">
+              <div className="absolute top-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                FLEXIBLE
+              </div>
+              <div className="w-12 h-12 bg-ordo-green rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <AlertCircle className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Notificaciones Manuales</h3>
+              <p className="text-gray-600 mb-4">
+                Alertas personalizables para cualquier ocasión: citas médicas, reuniones, recordatorios personales.
+              </p>
+              <ul className="text-sm text-gray-500 space-y-1">
+                <li>• Hora fija de envío: 9-10 AM</li>
+                <li>• Fecha y día completamente personalizables</li>
+                <li>• Independientes de finanzas - uso personal</li>
               </ul>
             </div>
           </div>
@@ -556,9 +575,9 @@ function App() {
                 <div className="flex items-center justify-center mb-4">
                   <CheckCircle className="h-8 w-8 text-ordo-blue" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Gestiona con confianza</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Visualiza con claridad</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Recibe notificaciones y mantén el control total de tu liquidez mensual
+                  Recibe recordatorios y mantén visibilidad completa de tu liquidez mensual
                 </p>
               </div>
             </div>
@@ -599,9 +618,9 @@ function App() {
               <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Eye className="h-6 w-6 text-ordo-green" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Control Manual</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Ingreso Manual</h3>
               <p className="text-white/80">
-                Tú decides qué información ingresar y cuándo. Control completo sobre tus datos.
+                Tú decides qué información ingresar y cuándo. Gestión completa sobre tus datos.
               </p>
             </div>
 
@@ -609,9 +628,9 @@ function App() {
               <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <CheckCircle className="h-6 w-6 text-ordo-green" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Datos Seguros</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Privacidad Total</h3>
               <p className="text-white/80">
-                Información almacenada de forma segura sin exponer credenciales bancarias.
+                El equipo de OrdoApp NO tiene acceso a los datos de tu organización. Al desactivar tu cuenta, todos los datos se eliminan automáticamente sin revisión previa.
               </p>
             </div>
           </div>
@@ -662,7 +681,7 @@ function App() {
               </button>
               {openFaq === 1 && (
                 <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 animate-fadeIn">
-                  Una vez que ingresas tus gastos, suscripciones o préstamos, OrdoApp genera automáticamente un calendario de alertas. Las alertas se envían por email a las 10:00 AM con anticipación según el tipo de evento (7, 5, 3, 1 días antes, etc.). El sistema se renueva automáticamente cada mes.
+                  Una vez que ingresas tus gastos, suscripciones o préstamos, OrdoApp genera automáticamente un calendario de alertas. Todas las notificaciones se envían por email entre las 9-10 AM en horario matutino fijo, con anticipación según el tipo de evento (7, 5, 3, 1 días antes, etc.). Las notificaciones se renuevan automáticamente cada mes.
                 </div>
               )}
             </div>
@@ -698,7 +717,7 @@ function App() {
               </button>
               {openFaq === 3 && (
                 <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100 pt-4 animate-fadeIn">
-                  Puedes pausar las notificaciones en cualquier momento desde la configuración de cada gasto, suscripción o préstamo. Las alertas quedarán en estado "pausado" hasta que decidas reactivarlas.
+                  Puedes pausar las notificaciones manuales y de suscripciones en cualquier momento. Sin embargo, las alertas de gastos, préstamos y facturación de tarjetas son recordatorios fijos que no se pueden pausar, ya que están vinculados a vencimientos financieros importantes.
                 </div>
               )}
             </div>
@@ -750,7 +769,7 @@ function App() {
         </div>
       </section>
 
-      {/* Access Request Form Section */}
+      {/* Coming Soon Section - Access Request disabled during development */}
       <section id="solicitar-acceso" data-animate className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-ordo-green/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -758,113 +777,26 @@ function App() {
         </div>
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Solicitar Acceso a OrdoApp
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Completa el formulario y te contactaremos pronto
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-gray-100">
-            <form onSubmit={handleSolicitud} className="space-y-6">
-              <div>
-                <label htmlFor="nombre" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Nombre completo <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  value={formData.nombre}
-                  onChange={handleInputChange}
-                  placeholder="Tu nombre completo"
-                  required
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none text-gray-900"
-                />
+          <div className="text-center">
+            <div className="bg-white rounded-2xl shadow-2xl p-12 md:p-16 border-2 border-ordo-blue/20">
+              <div className="w-20 h-20 bg-gradient-to-br from-ordo-blue to-ordo-green rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+                <Clock className="h-10 w-10 text-white" />
               </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Email <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="tu@email.com"
-                  required
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none text-gray-900"
-                />
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Próxima Apertura
+              </h2>
+              <p className="text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
+                Estamos en las etapas finales de desarrollo. OrdoApp estará disponible muy pronto.
+              </p>
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-ordo-blue to-blue-600 text-white px-6 py-3 rounded-lg font-medium">
+                <Zap className="h-5 w-5" />
+                En desarrollo activo
               </div>
-
-              <div>
-                <label htmlFor="comoUsaras" className="block text-sm font-semibold text-gray-900 mb-2">
-                  ¿Cómo planeas usar OrdoApp?
-                </label>
-                <textarea
-                  id="comoUsaras"
-                  name="comoUsaras"
-                  value={formData.comoUsaras}
-                  onChange={handleInputChange}
-                  placeholder="Cuéntanos sobre tu interés en OrdoApp..."
-                  rows="4"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none resize-none text-gray-900"
-                />
-              </div>
-
-              {/* Cloudflare Turnstile CAPTCHA */}
-              <div className="flex justify-center">
-                <Turnstile
-                  ref={turnstileRef}
-                  siteKey="0x4AAAAAAB4vc2jXJFg8m_I3"
-                  onSuccess={(token) => setTurnstileToken(token)}
-                  onError={() => setTurnstileToken(null)}
-                  onExpire={() => setTurnstileToken(null)}
-                  options={{
-                    theme: "light",
-                    size: "normal",
-                    language: "es"
-                  }}
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={formStatus.loading}
-                className="w-full bg-gradient-to-r from-ordo-blue to-blue-600 text-white px-8 py-4 rounded-xl hover:from-ordo-green hover:to-green-600 transition-all font-semibold text-lg shadow-2xl hover:shadow-green-500/50 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
-              >
-                {formStatus.loading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Enviando...
-                  </>
-                ) : (
-                  <>
-                    <Mail className="h-5 w-5" />
-                    Enviar Solicitud
-                  </>
-                )}
-              </button>
-
-              {formStatus.message && (
-                <div
-                  className={`p-4 rounded-lg ${
-                    formStatus.type === 'success'
-                      ? 'bg-green-50 border-2 border-green-200 text-green-800'
-                      : 'bg-red-50 border-2 border-red-200 text-red-800'
-                  } animate-fadeIn`}
-                >
-                  <p className="font-medium text-center whitespace-pre-line">{formStatus.message}</p>
-                </div>
-              )}
-            </form>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Newsletter Section - Temporarily disabled until email domain is ready */}
       {/*
