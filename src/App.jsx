@@ -1,8 +1,10 @@
 /* ordoapp-landing\src\App.jsx */
 import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
+import { Link } from 'react-router-dom'
 import { ArrowRight, Shield, Calendar, Bell, CreditCard, PiggyBank, Smartphone, CheckCircle, Lock, Eye, BarChart3, TrendingUp, Users, Clock, ChevronDown, Mail, Zap, Target, ChevronLeft, ChevronRight, X, AlertCircle } from 'lucide-react'
 import { Turnstile } from '@marsidev/react-turnstile'
+import { sanitizeText, validateFormData, sanitizeName, sanitizeUsageText } from './utils/security'
 
 function App() {
   const [openFaq, setOpenFaq] = useState(null)
@@ -104,12 +106,32 @@ function App() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+
+    // Sanitizar inputs según el campo
+    let sanitizedValue = value
+    if (name === 'nombre') {
+      sanitizedValue = sanitizeName(value)
+    } else if (name === 'comoUsaras') {
+      sanitizedValue = sanitizeUsageText(value)
+    }
+
+    setFormData(prev => ({ ...prev, [name]: sanitizedValue }))
   }
 
   const handleSolicitud = async (e) => {
     e.preventDefault()
     setFormStatus({ loading: true, message: '', type: '' })
+
+    // Validar datos del formulario
+    const validation = validateFormData(formData)
+    if (!validation.isValid) {
+      setFormStatus({
+        loading: false,
+        message: validation.errors.join('\n'),
+        type: 'error'
+      })
+      return
+    }
 
     // Validar Turnstile
     if (!turnstileToken) {
@@ -128,9 +150,9 @@ function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: formData.email,
-          nombre_sugerido: formData.nombre,
-          uso_planificado: formData.comoUsaras,
+          email: formData.email.trim(),
+          nombre_sugerido: formData.nombre.trim(),
+          uso_planificado: formData.comoUsaras.trim(),
           turnstile_token: turnstileToken
         })
       })
@@ -148,8 +170,9 @@ function App() {
         setTurnstileToken(null)
         turnstileRef.current?.reset()
       } else {
-        // Mostrar mensaje específico del backend (priorizar detail, message o error)
+        // Sanitizar mensaje del servidor para prevenir XSS
         let errorMessage = data.detail || data.message || data.error || 'Hubo un error al enviar tu solicitud.'
+        errorMessage = sanitizeText(String(errorMessage))
 
         setFormStatus({
           loading: false,
@@ -158,7 +181,12 @@ function App() {
         })
       }
     } catch (error) {
-      console.error('Error al enviar solicitud:', error)
+      // No mostrar información sensible del error en producción
+      // Solo registrar en desarrollo
+      if (import.meta.env.DEV) {
+        console.warn('Error de red al enviar solicitud')
+      }
+
       setFormStatus({
         loading: false,
         message: 'Error de conexión. Por favor, verifica tu conexión a internet e intenta nuevamente.',
@@ -911,12 +939,12 @@ function App() {
                 © 2025 OrdoApp. Gestión financiera con privacidad.
               </p>
               <div className="flex gap-6 text-sm text-gray-500">
-                <span className="hover:text-white transition-colors cursor-pointer">
+                <Link to="/terminos-servicio" className="hover:text-white transition-colors cursor-pointer">
                   Términos de servicio
-                </span>
-                <span className="hover:text-white transition-colors cursor-pointer">
+                </Link>
+                <Link to="/politica-privacidad" className="hover:text-white transition-colors cursor-pointer">
                   Política de privacidad
-                </span>
+                </Link>
               </div>
             </div>
           </div>
