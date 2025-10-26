@@ -56,10 +56,11 @@ export function sanitizeName(name) {
   if (!name || typeof name !== 'string') return ''
 
   // Remover caracteres peligrosos pero mantener letras, números, espacios y acentos
+  // El trim se hace al enviar el formulario, no en tiempo real
   const cleaned = name
-    .trim()
     .replace(/[<>'"]/g, '') // Remover caracteres HTML peligrosos
     .slice(0, 100) // Limitar longitud
+    .trim() // Limpiar espacios solo al final del proceso
 
   return cleaned
 }
@@ -71,10 +72,11 @@ export function sanitizeUsageText(text) {
   if (!text || typeof text !== 'string') return ''
 
   // Remover caracteres peligrosos
+  // El trim se hace al enviar el formulario, no en tiempo real
   const cleaned = text
-    .trim()
     .replace(/[<>'"]/g, '')
     .slice(0, 500) // Limitar longitud
+    .trim() // Limpiar espacios solo al final del proceso
 
   return cleaned
 }

@@ -107,23 +107,30 @@ function App() {
   const handleInputChange = (e) => {
     const { name, value } = e.target
 
-    // Sanitizar inputs según el campo
-    let sanitizedValue = value
-    if (name === 'nombre') {
-      sanitizedValue = sanitizeName(value)
-    } else if (name === 'comoUsaras') {
-      sanitizedValue = sanitizeUsageText(value)
+    // Solo aplicar limitación de longitud en tiempo real, sin sanitizar
+    let limitedValue = value
+    if (name === 'nombre' && value.length > 100) {
+      limitedValue = value.slice(0, 100)
+    } else if (name === 'comoUsaras' && value.length > 500) {
+      limitedValue = value.slice(0, 500)
     }
 
-    setFormData(prev => ({ ...prev, [name]: sanitizedValue }))
+    setFormData(prev => ({ ...prev, [name]: limitedValue }))
   }
 
   const handleSolicitud = async (e) => {
     e.preventDefault()
     setFormStatus({ loading: true, message: '', type: '' })
 
+    // Sanitizar datos antes de validar
+    const sanitizedData = {
+      nombre: sanitizeName(formData.nombre),
+      email: formData.email.trim(),
+      comoUsaras: sanitizeUsageText(formData.comoUsaras)
+    }
+
     // Validar datos del formulario
-    const validation = validateFormData(formData)
+    const validation = validateFormData(sanitizedData)
     if (!validation.isValid) {
       setFormStatus({
         loading: false,
@@ -150,9 +157,9 @@ function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: formData.email.trim(),
-          nombre_sugerido: formData.nombre.trim(),
-          uso_planificado: formData.comoUsaras.trim(),
+          email: sanitizedData.email,
+          nombre_sugerido: sanitizedData.nombre,
+          uso_planificado: sanitizedData.comoUsaras,
           turnstile_token: turnstileToken
         })
       })
