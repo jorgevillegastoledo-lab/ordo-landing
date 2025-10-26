@@ -797,7 +797,7 @@ function App() {
         </div>
       </section>
 
-      {/* Coming Soon Section - Access Request disabled during development */}
+      {/* Access Request Section */}
       <section id="solicitar-acceso" data-animate className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-ordo-green/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -805,22 +805,110 @@ function App() {
         </div>
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center">
-            <div className="bg-white rounded-2xl shadow-2xl p-12 md:p-16 border-2 border-ordo-blue/20">
-              <div className="w-20 h-20 bg-gradient-to-br from-ordo-blue to-ordo-green rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
-                <Clock className="h-10 w-10 text-white" />
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Solicitar Acceso a OrdoApp
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Completa el formulario y te contactaremos pronto
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-gray-100">
+            <form onSubmit={handleSolicitud} className="space-y-6">
+              <div>
+                <label htmlFor="nombre" className="block text-sm font-semibold text-gray-900 mb-2">
+                  Nombre completo <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  value={formData.nombre}
+                  onChange={handleInputChange}
+                  placeholder="Tu nombre completo"
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none text-gray-900"
+                />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Próxima Apertura
-              </h2>
-              <p className="text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
-                Estamos en las etapas finales de desarrollo. OrdoApp estará disponible muy pronto.
-              </p>
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-ordo-blue to-blue-600 text-white px-6 py-3 rounded-lg font-medium">
-                <Zap className="h-5 w-5" />
-                En desarrollo activo
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="tu@email.com"
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none text-gray-900"
+                />
               </div>
-            </div>
+
+              <div>
+                <label htmlFor="comoUsaras" className="block text-sm font-semibold text-gray-900 mb-2">
+                  ¿Cómo planeas usar OrdoApp?
+                </label>
+                <textarea
+                  id="comoUsaras"
+                  name="comoUsaras"
+                  value={formData.comoUsaras}
+                  onChange={handleInputChange}
+                  placeholder="Cuéntanos sobre tu interés en OrdoApp..."
+                  rows="4"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ordo-blue focus:ring-4 focus:ring-blue-100 transition-all outline-none resize-none text-gray-900"
+                />
+              </div>
+
+              {/* Cloudflare Turnstile CAPTCHA */}
+              <div className="flex justify-center">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey="0x4AAAAAAB4vc2jXJFg8m_I3"
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onError={() => setTurnstileToken(null)}
+                  onExpire={() => setTurnstileToken(null)}
+                  options={{
+                    theme: "light",
+                    size: "normal",
+                    language: "es"
+                  }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={formStatus.loading}
+                className="w-full bg-gradient-to-r from-ordo-blue to-blue-600 text-white px-8 py-4 rounded-xl hover:from-ordo-green hover:to-green-600 transition-all font-semibold text-lg shadow-2xl hover:shadow-green-500/50 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+              >
+                {formStatus.loading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Mail className="h-5 w-5" />
+                    Enviar Solicitud
+                  </>
+                )}
+              </button>
+
+              {formStatus.message && (
+                <div
+                  className={`p-4 rounded-lg ${
+                    formStatus.type === 'success'
+                      ? 'bg-green-50 border-2 border-green-200 text-green-800'
+                      : 'bg-red-50 border-2 border-red-200 text-red-800'
+                  } animate-fadeIn`}
+                >
+                  <p className="font-medium text-center whitespace-pre-line">{formStatus.message}</p>
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </section>
