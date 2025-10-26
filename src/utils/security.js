@@ -99,11 +99,13 @@ export function validateFormData(formData) {
     errors.push('El nombre contiene caracteres no permitidos')
   }
 
-  // Validar uso planificado
-  if (!formData.comoUsaras || formData.comoUsaras.trim().length < 10) {
-    errors.push('Por favor describe cómo usarás la aplicación (mínimo 10 caracteres)')
-  } else if (containsDangerousContent(formData.comoUsaras)) {
-    errors.push('La descripción contiene caracteres no permitidos')
+  // Validar uso planificado (opcional, pero si se completa debe tener al menos 10 caracteres)
+  if (formData.comoUsaras && formData.comoUsaras.trim().length > 0) {
+    if (formData.comoUsaras.trim().length < 10) {
+      errors.push('La descripción debe tener al menos 10 caracteres')
+    } else if (containsDangerousContent(formData.comoUsaras)) {
+      errors.push('La descripción contiene caracteres no permitidos')
+    }
   }
 
   return {
