@@ -197,7 +197,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
+      {/* Encabezado */}
       <header className="bg-white shadow-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
@@ -219,7 +219,7 @@ function App() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Sección Hero */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-500 via-ordo-blue to-ordo-green relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PC9nPjwvc3ZnPg==')] opacity-20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -249,7 +249,7 @@ function App() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Sección de Estadísticas */}
       <section id="stats" data-animate className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 text-center">
@@ -289,7 +289,7 @@ function App() {
         </div>
       </section>
 
-      {/* Features Grid */}
+      {/* Cuadrícula de Características */}
       <section id="features" data-animate className="py-16 bg-gradient-to-b from-white via-blue-50 to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -429,7 +429,7 @@ function App() {
         </div>
       </section>
 
-      {/* App Screenshots Section */}
+      {/* Sección de Capturas de Pantalla */}
       <section id="screenshots" data-animate className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-ordo-blue/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -446,7 +446,7 @@ function App() {
             </p>
           </div>
 
-          {/* 3D Carousel */}
+          {/* Carrusel 3D */}
           <div className="relative perspective-carousel" style={{perspective: '2000px'}}>
             <div className="relative h-[600px] flex items-center justify-center">
               {screenshots.map((screenshot, index) => {
@@ -490,7 +490,7 @@ function App() {
               })}
             </div>
 
-            {/* Navigation Buttons */}
+            {/* Botones de Navegación */}
             <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 group"
@@ -506,7 +506,7 @@ function App() {
               <ChevronRight className="h-8 w-8 text-ordo-blue group-hover:text-ordo-green transition-colors" />
             </button>
 
-            {/* Dot Indicators */}
+            {/* Indicadores de Puntos */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
               {screenshots.map((_, index) => (
                 <button
@@ -523,7 +523,7 @@ function App() {
             </div>
           </div>
 
-          {/* CTA Below Carousel */}
+          {/* CTA Debajo del Carrusel */}
           <div className="text-center mt-16">
             <a
               href="https://app.ordoapp.cl"
@@ -537,7 +537,7 @@ function App() {
         </div>
       </section>
 
-      {/* How It Works Section */}
+      {/* Sección Cómo Funciona */}
       <section id="how-it-works" data-animate className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -550,10 +550,10 @@ function App() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-12 relative">
-            {/* Connector Line */}
+            {/* Línea Conectora */}
             <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-ordo-blue via-ordo-green to-ordo-blue opacity-20" style={{zIndex: 0}}></div>
 
-            {/* Step 1 */}
+            {/* Paso 1 */}
             <div className="relative text-center group" style={{zIndex: 1}}>
               <div className="relative inline-flex items-center justify-center mb-6">
                 <div className="absolute w-24 h-24 bg-ordo-blue/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
@@ -572,7 +572,7 @@ function App() {
               </div>
             </div>
 
-            {/* Step 2 */}
+            {/* Paso 2 */}
             <div className="relative text-center group" style={{zIndex: 1}}>
               <div className="relative inline-flex items-center justify-center mb-6">
                 <div className="absolute w-24 h-24 bg-ordo-green/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
@@ -591,7 +591,7 @@ function App() {
               </div>
             </div>
 
-            {/* Step 3 */}
+            {/* Paso 3 */}
             <div className="relative text-center group" style={{zIndex: 1}}>
               <div className="relative inline-flex items-center justify-center mb-6">
                 <div className="absolute w-24 h-24 bg-ordo-blue/20 rounded-full blur-xl group-hover:blur-2xl transition-all"></div>
@@ -613,7 +613,7 @@ function App() {
         </div>
       </section>
 
-      {/* Privacy Section */}
+      {/* Sección de Privacidad */}
       <section id="privacy" data-animate className="py-16 bg-gradient-to-br from-green-500 via-ordo-green to-emerald-600 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px'}}></div>
@@ -665,7 +665,7 @@ function App() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Sección de Preguntas Frecuentes */}
       <section id="faq" data-animate className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -678,7 +678,7 @@ function App() {
           </div>
 
           <div className="space-y-4">
-            {/* FAQ Item 1 */}
+            {/* Pregunta Frecuente 1 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-blue transition-all">
               <button
                 onClick={() => toggleFaq(0)}
@@ -696,7 +696,7 @@ function App() {
               )}
             </div>
 
-            {/* FAQ Item 2 */}
+            {/* Pregunta Frecuente 2 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-green transition-all">
               <button
                 onClick={() => toggleFaq(1)}
@@ -714,7 +714,7 @@ function App() {
               )}
             </div>
 
-            {/* FAQ Item 3 */}
+            {/* Pregunta Frecuente 3 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-blue transition-all">
               <button
                 onClick={() => toggleFaq(2)}
@@ -732,7 +732,7 @@ function App() {
               )}
             </div>
 
-            {/* FAQ Item 4 */}
+            {/* Pregunta Frecuente 4 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-green transition-all">
               <button
                 onClick={() => toggleFaq(3)}
@@ -750,7 +750,7 @@ function App() {
               )}
             </div>
 
-            {/* FAQ Item 5 - Commented out during development */}
+            {/* Pregunta Frecuente 5 - Comentada durante desarrollo */}
             {/*
             <div className="bg-white rounded-xl shadow-md overflow-hidden border-2 border-gray-100 hover:border-ordo-blue transition-all">
               <button
@@ -773,7 +773,7 @@ function App() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Sección de Llamado a la Acción */}
       <section className="py-16 bg-gradient-to-r from-blue-600 via-ordo-blue to-blue-500 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-96 h-96 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -797,7 +797,7 @@ function App() {
         </div>
       </section>
 
-      {/* Access Request Section */}
+      {/* Sección de Solicitud de Acceso */}
       <section id="solicitar-acceso" data-animate className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-ordo-green/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -914,7 +914,7 @@ function App() {
       </section>
 
 
-      {/* Newsletter Section - Temporarily disabled until email domain is ready */}
+      {/* Sección de Newsletter - Temporalmente deshabilitada hasta que el dominio de email esté listo */}
       {/*
       <section className="py-16 bg-gradient-to-br from-gray-50 to-white border-t border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -949,11 +949,11 @@ function App() {
       </section>
       */}
 
-      {/* Footer */}
+      {/* Pie de Página */}
       <footer className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
-            {/* Brand */}
+            {/* Marca */}
             <div className="md:col-span-2">
               <div className="mb-4">
                 <img src="/ordoapp_logo.svg" alt="OrdoApp" className="h-10" />
@@ -970,7 +970,7 @@ function App() {
               </div>
             </div>
 
-            {/* Links */}
+            {/* Enlaces */}
             <div>
               <h3 className="font-semibold text-white mb-4">Producto</h3>
               <ul className="space-y-3">
@@ -997,7 +997,7 @@ function App() {
               </ul>
             </div>
 
-            {/* Company */}
+            {/* Recursos */}
             <div>
               <h3 className="font-semibold text-white mb-4">Recursos</h3>
               <ul className="space-y-3">
@@ -1020,7 +1020,7 @@ function App() {
             </div>
           </div>
 
-          {/* Bottom */}
+          {/* Parte Inferior */}
           <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-gray-500 text-sm">
@@ -1039,7 +1039,7 @@ function App() {
         </div>
       </footer>
 
-      {/* Image Lightbox Modal */}
+      {/* Modal de Lightbox de Imagen */}
       {lightboxOpen && lightboxImage && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm animate-fadeIn"
