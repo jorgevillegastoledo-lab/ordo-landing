@@ -804,7 +804,38 @@ function App() {
         </div>
       </section>
 
-      {/* Sección de Solicitud de Acceso */}
+      {/* Sección de Próxima Apertura */}
+      <section id="solicitar-acceso" data-animate className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-ordo-green/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-ordo-blue/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <div className="w-20 h-20 bg-gradient-to-br from-ordo-blue to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl animate-pulse">
+              <Clock className="h-10 w-10 text-white" />
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              Próxima Apertura
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Estamos preparando algo especial para ti. Pronto abriremos nuevamente el acceso a OrdoApp.
+            </p>
+            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-ordo-blue/20">
+              <p className="text-2xl font-semibold text-ordo-blue mb-4">
+                ¡Mantente atento!
+              </p>
+              <p className="text-gray-600 text-lg">
+                Mientras tanto, puedes explorar todas las características que OrdoApp tiene para ofrecerte.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección de Solicitud de Acceso - FORMULARIO COMENTADO TEMPORALMENTE */}
+      {/*
       <section id="solicitar-acceso" data-animate className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-ordo-green/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -870,7 +901,6 @@ function App() {
                 />
               </div>
 
-              {/* Cloudflare Turnstile CAPTCHA */}
               <div className="flex justify-center">
                 <Turnstile
                   ref={turnstileRef}
@@ -919,6 +949,7 @@ function App() {
           </div>
         </div>
       </section>
+      */}
 
 
       {/* Sección de Newsletter - Temporalmente deshabilitada hasta que el dominio de email esté listo */}
